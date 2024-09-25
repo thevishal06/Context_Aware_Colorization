@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+    <title>Context Aware Colorization</title>
+</head>
+<body>
+    <h1>Context Aware Colorization of Complex Scenes</h1>
+    <form id="upload-form" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit">Upload</button>
+    </form>
+    <img id="colorized-image" src="" alt="Colorized Image" style="display:none;">
+    <script>
+        document.getElementById('upload-form').onsubmit = async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const response = await fetch('/colorize', {
+                method: 'POST',
+                body: formData,
+            });
+            const data = await response.json();
+            if (data.status === 'success') {
+                const img = document.getElementById('colorized-image');
+                img.src = data.image_path;
+                img.style.display = 'block';
+            }
+        };
+    </script>
+</body>
+</html>
