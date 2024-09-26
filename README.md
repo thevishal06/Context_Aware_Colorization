@@ -1,0 +1,1 @@
+Context Aware Colorization of Complex Scenes: A model that intelligently colorizes complex scenes (like cityscapes or forests) based on object relationships and contextual information. Includes a GUI for submitting images and receiving high-quality outputs.
